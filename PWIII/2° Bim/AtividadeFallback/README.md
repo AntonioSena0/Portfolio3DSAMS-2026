@@ -60,13 +60,21 @@ Composer: >= 2.9.5
 ## Como Rodar?
 
 ```bash
-#Preparando ambiente
+#Instalando dependências
+composer install
+npm install
+npm run build
+
+#Definindo variáveis de ambiente
 Verifique o .env.example na raiz do projeto e crie um .env baseado nele e preencha os dados
+
+#Gerar chave para aplicação
+php artisan key:generate
 
 #Iniciar Banco de Dados
 docker compose up -d
 
-#Rodar as migrações
+#Executar as migrações
 php artisan migrate
 
 #Inicializar
