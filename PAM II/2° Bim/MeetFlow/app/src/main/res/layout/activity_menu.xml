@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MeetFlow"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:textColor="@color/blue_primary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gerenciamento inteligente de reuniões"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="6dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="28dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/dashboard_card"
+                android:elevation="6dp"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/txtTotalUsuarios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_primary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Usuários"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="6dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/dashboard_card"
+                android:elevation="6dp"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:id="@+id/txtTotalReunioes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_primary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reuniões"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="6dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="36dp"/>
+
+        <Button
+            android:id="@+id/btnCadastrarUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="20dp"
+            android:text="Cadastrar Usuário"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"/>
+
+        <Button
+            android:id="@+id/btnCadastrarReuniao"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="16dp"
+            android:text="Nova Reunião"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listar"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="36dp"/>
+
+        <Button
+            android:id="@+id/btnListarUsuarios"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="32dp"
+            android:text="Listar Usuários"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"/>
+
+        <Button
+            android:id="@+id/btnListarReunioes"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="16dp"
+            android:text="Listar Reuniões"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"/>
+
+    </LinearLayout>
+
+</ScrollView>

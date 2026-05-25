@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <include layout="@layout/toolbar_layout"/>
+
+    <LinearLayout
+        android:id="@+id/llForm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuário"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:paddingBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/edtNome"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:hint="Nome"
+            android:background="@drawable/rounded_input"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:hint="Email"
+            android:background="@drawable/rounded_input"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/edtTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:hint="Telefone"
+            android:background="@drawable/rounded_input"
+            android:padding="16dp"/>
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="32dp"
+            android:text="Salvar"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_button"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
