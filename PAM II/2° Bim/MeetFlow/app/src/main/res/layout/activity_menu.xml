@@ -105,16 +105,6 @@
             android:layout_marginTop="36dp"/>
 
         <Button
-            android:id="@+id/btnCadastrarUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="20dp"
-            android:text="Cadastrar Usuário"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_button"/>
-
-        <Button
             android:id="@+id/btnCadastrarReuniao"
             android:layout_width="match_parent"
             android:layout_height="58dp"
@@ -134,16 +124,6 @@
             android:layout_marginTop="36dp"/>
 
         <Button
-            android:id="@+id/btnListarUsuarios"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="32dp"
-            android:text="Listar Usuários"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_button"/>
-
-        <Button
             android:id="@+id/btnListarReunioes"
             android:layout_width="match_parent"
             android:layout_height="58dp"
@@ -152,6 +132,23 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:background="@drawable/rounded_button"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnSair"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="16dp"
+            android:text="Sair"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button_danger"
+            app:backgroundTint="@null"
+            />
 
     </LinearLayout>
 

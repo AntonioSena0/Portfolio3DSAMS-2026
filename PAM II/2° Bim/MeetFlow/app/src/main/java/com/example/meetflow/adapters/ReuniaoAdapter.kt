@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetflow.R
 import com.example.meetflow.activities.ListaReunioesActivity
-import com.example.meetflow.database.DatabaseHelper
+import com.example.meetflow.database.daos.ReuniaoDao
 import com.example.meetflow.model.Reuniao
 import com.google.android.material.snackbar.Snackbar
 
@@ -21,7 +21,7 @@ class ReuniaoAdapter(
     private val onDeleteClick: (Reuniao) -> Unit
 ) : RecyclerView.Adapter<ReuniaoAdapter.ReuniaoViewHolder>() {
 
-    private val db = DatabaseHelper(context)
+    private val db = ReuniaoDao(context)
 
     inner class ReuniaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtTitulo: TextView = itemView.findViewById(R.id.txtTitulo)

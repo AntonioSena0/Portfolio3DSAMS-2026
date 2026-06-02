@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.meetflow.R
-import com.example.meetflow.database.DatabaseHelper
+import com.example.meetflow.database.daos.ReuniaoDao
 import com.google.android.material.appbar.MaterialToolbar
 
 class DetalhesReuniaoActivity
@@ -22,7 +22,7 @@ class DetalhesReuniaoActivity
     private lateinit var toolbar:
             MaterialToolbar
 
-    private lateinit var db: DatabaseHelper
+    private lateinit var db: ReuniaoDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -38,7 +38,7 @@ class DetalhesReuniaoActivity
 
         inicializarComponentes()
 
-        db = DatabaseHelper(this)
+        db = ReuniaoDao(applicationContext)
 
         carregarDados()
 

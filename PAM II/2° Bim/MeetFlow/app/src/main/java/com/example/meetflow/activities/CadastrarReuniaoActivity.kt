@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetflow.R
 import com.example.meetflow.adapters.SelecionarUsuarioAdapter
-import com.example.meetflow.database.DatabaseHelper
+import com.example.meetflow.services.ReuniaoService
+import com.example.meetflow.database.daos.ReuniaoDao
+import com.example.meetflow.database.daos.UserDao
+import com.example.meetflow.repositories.ReuniaoRepository
 import com.google.android.material.appbar.MaterialToolbar
 
 class CadastrarReuniaoActivity : AppCompatActivity() {
@@ -31,7 +34,8 @@ class CadastrarReuniaoActivity : AppCompatActivity() {
     private lateinit var toolbar:
             MaterialToolbar
 
-    private lateinit var db: DatabaseHelper
+    private lateinit var reuniaoDao: ReuniaoDao
+private lateinit var usuarioDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -45,7 +49,8 @@ class CadastrarReuniaoActivity : AppCompatActivity() {
 
         configurarClicks()
 
-        db = DatabaseHelper(this)
+        reuniaoDao = ReuniaoDao(applicationContext)
+        usuarioDao = UserDao(applicationContext)
         carregarUsuarios()
 
         setSupportActionBar(toolbar)
@@ -90,7 +95,7 @@ class CadastrarReuniaoActivity : AppCompatActivity() {
 
     private fun carregarUsuarios() {
 
-        val listaUsuarios = db.listarUsuarios()
+        val listaUsuarios = usuarioDao.listarUsuarios()
 
         adapter = SelecionarUsuarioAdapter(
             listaUsuarios
@@ -136,7 +141,7 @@ class CadastrarReuniaoActivity : AppCompatActivity() {
             return
         }
 
-        val reuniaoId = db.inserirReuniao(
+        val reuniaoId = reuniaoDao.inserirReuniao(
             titulo,
             descricao,
             data
@@ -151,7 +156,7 @@ class CadastrarReuniaoActivity : AppCompatActivity() {
 
                     usuarioId ->
 
-                db.vincularUsuarioReuniao(
+                reuniaoDao.vincularUsuarioReuniao(
                     usuarioId,
                     reuniaoId.toInt()
                 )

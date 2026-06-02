@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetflow.R
 import com.example.meetflow.adapters.ReuniaoAdapter
-import com.example.meetflow.database.DatabaseHelper
+import com.example.meetflow.database.daos.ReuniaoDao
+import com.example.meetflow.repositories.ReuniaoRepository
 import com.example.meetflow.model.Reuniao
 import com.example.meetflow.model.User
 import com.google.android.material.appbar.MaterialToolbar
@@ -29,7 +30,7 @@ class ListaReunioesActivity
     private lateinit var adapter:
             ReuniaoAdapter
 
-    private lateinit var db: DatabaseHelper
+    private lateinit var reuniaoRepository: ReuniaoRepository
 
     private lateinit var fabAdicionar:
             FloatingActionButton
@@ -47,7 +48,7 @@ class ListaReunioesActivity
 
         inicializarComponentes()
 
-        db = DatabaseHelper(this)
+        reuniaoRepository = ReuniaoRepository(ReuniaoDao(applicationContext))
 
         carregarReunioes()
 
@@ -110,7 +111,7 @@ class ListaReunioesActivity
     private fun carregarReunioes() {
 
         val listaReunioes =
-            db.listarReunioes()
+            reuniaoRepository.listarReunioes()
 
         if (listaReunioes.isEmpty()) {
             txtEmpty.visibility = View.VISIBLE
@@ -175,7 +176,7 @@ class ListaReunioesActivity
 
     private fun excluirReuniao(id: Int) {
 
-        val sucesso = db.deletarReuniao(id)
+        val sucesso = reuniaoRepository.deletarReuniao(id)
 
         if (sucesso) {
             carregarReunioes()

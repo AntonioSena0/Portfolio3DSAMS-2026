@@ -6,7 +6,13 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.meetflow.R
-import com.example.meetflow.database.DatabaseHelper
+import com.example.meetflow.database.daos.ReuniaoDao
+import com.example.meetflow.database.daos.UserDao
+import com.example.meetflow.repositories.ReuniaoRepository
+import com.example.meetflow.repositories.UserRepository
+import com.example.meetflow.services.ReuniaoService
+import com.example.meetflow.services.UserService
+import com.example.meetflow.session.SessionManager
 
 class MenuActivity : AppCompatActivity() {
 
@@ -18,14 +24,16 @@ class MenuActivity : AppCompatActivity() {
 
     private lateinit var btnListarReunioes: Button
 
+    private lateinit var btnSair: Button
+
     private lateinit var txtTotalUsuarios:
             TextView
 
     private lateinit var txtTotalReunioes:
             TextView
 
-    private lateinit var db:
-            DatabaseHelper
+    private lateinit var userService: UserService
+private lateinit var reuniaoService: ReuniaoService
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -37,7 +45,8 @@ class MenuActivity : AppCompatActivity() {
 
         configurarClicks()
 
-        db = DatabaseHelper(this)
+        reuniaoService = ReuniaoService(ReuniaoRepository(ReuniaoDao(applicationContext)))
+        userService = UserService(UserRepository(UserDao(applicationContext)))
 
         carregarEstatisticas()
 
@@ -52,12 +61,6 @@ class MenuActivity : AppCompatActivity() {
 
     private fun inicializarComponentes() {
 
-        btnCadastrarUsuario =
-            findViewById(R.id.btnCadastrarUsuario)
-
-        btnListarUsuarios =
-            findViewById(R.id.btnListarUsuarios)
-
         btnCadastrarReuniao =
             findViewById(R.id.btnCadastrarReuniao)
 
@@ -70,19 +73,12 @@ class MenuActivity : AppCompatActivity() {
         txtTotalReunioes =
             findViewById(R.id.txtTotalReunioes)
 
+        btnSair =
+            findViewById(R.id.btnSair)
+
     }
 
     private fun configurarClicks() {
-
-        btnCadastrarUsuario.setOnClickListener {
-
-            abrirCadastroUsuario()
-        }
-
-        btnListarUsuarios.setOnClickListener {
-
-            abrirListaUsuarios()
-        }
 
         btnCadastrarReuniao.setOnClickListener {
 
@@ -96,15 +92,25 @@ class MenuActivity : AppCompatActivity() {
 
         }
 
+        btnSair.setOnClickListener {
+            val sessionManager = SessionManager(applicationContext)
+            sessionManager.logout()
+
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
     private fun carregarEstatisticas() {
 
         val totalUsuarios =
-            db.contarUsuarios()
+            userService.contarUsuarios()
 
         val totalReunioes =
-            db.contarReunioes()
+            reuniaoService.contarReunioes()
 
         txtTotalUsuarios.text =
             totalUsuarios.toString()

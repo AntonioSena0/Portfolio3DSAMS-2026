@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.meetflow.activities.MenuActivity
-import com.example.meetflow.database.DatabaseHelper
+import com.example.meetflow.database.daos.ReuniaoDao
+import com.example.meetflow.database.daos.UserDao
+import com.example.meetflow.repositories.ReuniaoRepository
+import com.example.meetflow.repositories.UserRepository
 
-class MainActivity : AppCompatActivity() {
+class
+MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -17,8 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         val btnEntrar = findViewById<Button>(R.id.btnEntrar)
 
-        val db = DatabaseHelper(this)
-        db.limparRelacionamentosOrfaos()
+        val userRepository = UserRepository(UserDao(this))
+        val reuniaoRepository = ReuniaoRepository(ReuniaoDao(this))
+        reuniaoRepository.limparRelacionamentosOrfaos()
 
         btnEntrar.setOnClickListener {
 

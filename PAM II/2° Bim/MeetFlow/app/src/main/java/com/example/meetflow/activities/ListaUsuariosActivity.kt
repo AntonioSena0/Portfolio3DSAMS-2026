@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetflow.R
 import com.example.meetflow.adapters.UsuarioAdapter
-import com.example.meetflow.database.DatabaseHelper
+import com.example.meetflow.database.daos.UserDao
+import com.example.meetflow.repositories.UserRepository
 import com.example.meetflow.model.User
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -26,7 +27,7 @@ class ListaUsuariosActivity : AppCompatActivity() {
     private lateinit var toolbar:
             MaterialToolbar
 
-    private lateinit var db: DatabaseHelper
+    private lateinit var userRepository: UserRepository
 
     private lateinit var fabAdicionar:
             FloatingActionButton
@@ -44,7 +45,7 @@ class ListaUsuariosActivity : AppCompatActivity() {
 
         configurarRecyclerView()
 
-        db = DatabaseHelper(this)
+        userRepository = UserRepository(UserDao(applicationContext))
 
         setSupportActionBar(toolbar)
 
@@ -109,7 +110,7 @@ class ListaUsuariosActivity : AppCompatActivity() {
 
     private fun carregarUsuarios() {
 
-        val listaUsuarios = db.listarUsuarios()
+        val listaUsuarios = userRepository.listarUsuarios()
 
         if (listaUsuarios.isEmpty()) {
             txtEmpty.visibility = View.VISIBLE
@@ -170,7 +171,7 @@ class ListaUsuariosActivity : AppCompatActivity() {
 
     private fun excluirUsuario(id: Int) {
 
-        val sucesso = db.deletarUsuario(id)
+        val sucesso = userRepository.deletarUsuario(id)
 
         if (sucesso) {
             carregarUsuarios()
