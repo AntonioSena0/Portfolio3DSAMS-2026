@@ -18,9 +18,7 @@ O projeto foi construído com foco em boas práticas de desenvolvimento Android 
 
 ## Usuários
 - Cadastro de usuários
-- Listagem de usuários
-- Atualização de Usuários
-- Exclusão de usuários
+- Login de usuários
 
 ## Reuniões
 - Cadastro de reuniões
@@ -51,6 +49,13 @@ com.example.meetflow
 ├── adapters
 ├── database
 ├── model
+├── repositories
+├── security
+├── session
+├── ui
+├── utils
+├── validators
+├── MainActivity.kt
 ├── res
 │   ├── drawable
 │   ├── layout
@@ -90,45 +95,40 @@ Tabela intermediária responsável pelo relacionamento N:M entre usuários e reu
 
 # Capturas de Tela
 
-## Dashboard
-
-<img src="./app/assets/Dashboard.png" alt="Dashboard" />
-
----
-
 ## Cadastro de Usuário
 
-<img src="./app/assets/Cadastrar Usuário.png" alt="Cadastrar Usuário" />
+<img src="./assets/cadastro_usuario.png" alt="Cadastrar Usuário" />
 
 ---
+
+## Login de Usuário
+
+<img src="./assets/login.png" alt="Login" />
+
+---
+
+## Dashboard
+
+<img src="./assets/dashboard.png" alt="Dashboard" />
+
+---
+
 
 ## Cadastro de Reunião
 
-<img src="./app/assets/Cadastrar Reuniões.png" alt="Cadastrar Reuniões" />
-
----
-
-## Lista de Usuários
-
-<img src="./app/assets/Usuários.png" alt="Usuários" />
-
----
-
-## Atualizar Usuário
-
-<img src="./app/assets/Atualizar Usuário.png" alt="Atualizar Usuário" />
+<img src="./assets/cadastro_reuniao.png" alt="Cadastrar Reuniões" />
 
 ---
 
 ## Lista de Reuniões
 
-<img src="./app/assets/Reuniões.png" alt="Reuniões" />
+<img src="./assets/lista_reunioes.png" alt="Reuniões" />
 
 ---
 
 ## Detalhes da Reunião
 
-<img src="./app/assets/Detalhes (Reunião).png" alt="Detalhes Reunião" />
+<img src="./assets/detalhes_reuniao.png" alt="Detalhes Reunião" />
 
 ---
 
