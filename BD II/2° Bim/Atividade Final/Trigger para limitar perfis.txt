@@ -1,0 +1,12 @@
+Trigger para limitar perfis
+
+CREATE DEFINER=`root`@`localhost` TRIGGER limit_profiles
+BEFORE INSERT ON profiles
+FOR EACH ROW
+BEGIN
+    DECLARE profile_count INT DEFAULT 0;
+    SELECT COUNT(*) INTO profile_count FROM profiles WHERE id_customer = NEW.id_customer;
+    IF profile_count >= 5 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Máximo de perfis atingidos';
+    END IF;
+END
