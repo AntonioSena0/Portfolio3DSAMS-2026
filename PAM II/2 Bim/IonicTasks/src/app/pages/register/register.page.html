@@ -1,0 +1,66 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crie sua conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="register-page">
+  <div class="wrapper">
+    <h1>Bem-vindo ao Ionic Tasks</h1>
+    <p class="subtitle">Organize suas tarefas mesmo sem internet.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <ion-item fill="outline" class="input-item">
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+        <ion-input label="Nome" labelPlacement="floating"
+                   formControlName="name"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['name'].touched && f['name'].invalid">
+        <small>Informe um nome com pelo menos 3 caracteres.</small>
+      </ion-text>
+
+      <ion-item fill="outline" class="input-item">
+        <ion-icon slot="start" name="mail-outline"></ion-icon>
+        <ion-input label="E-mail" labelPlacement="floating" type="email"
+                   formControlName="email"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['email'].touched && f['email'].invalid">
+        <small>Informe um e-mail válido.</small>
+      </ion-text>
+
+      <ion-item fill="outline" class="input-item">
+        <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+        <ion-input label="Senha" labelPlacement="floating" type="password"
+                   formControlName="password"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['password'].touched && f['password'].invalid">
+        <small>Senha deve ter pelo menos 6 caracteres.</small>
+      </ion-text>
+
+      <ion-item fill="outline" class="input-item">
+        <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+        <ion-input label="Confirmar senha" labelPlacement="floating" type="password"
+                   formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="form.errors?.['passwordMismatch'] && f['confirmPassword'].touched">
+        <small>As senhas não coincidem.</small>
+      </ion-text>
+
+      <ion-text color="danger" *ngIf="error">
+        <p class="error">{{ error }}</p>
+      </ion-text>
+
+      <ion-button expand="block" type="submit" class="primary-btn">
+        Registrar
+      </ion-button>
+
+      <div class="footer-link">
+        <span>Já tem conta?</span>
+        <a routerLink="/login">Entrar</a>
+      </div>
+    </form>
+  </div>
+</ion-content>

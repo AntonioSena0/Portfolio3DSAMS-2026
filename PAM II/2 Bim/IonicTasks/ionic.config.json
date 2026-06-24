@@ -1,0 +1,7 @@
+{
+  "name": "IonicTasks",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

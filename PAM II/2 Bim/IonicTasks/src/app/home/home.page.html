@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ionic Taks</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="!user">
+    <ion-item>
+      <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        [(ngModel)]="password"
+        type="password"
+        placeholder="Senha"
+      ></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="login()">Login</ion-button>
+    <ion-button expand="block" color="medium" (click)="register()">
+      Registrar
+    </ion-button>
+  </div>
+
+  <div *ngIf="user">
+    <h2>Olá, {{ user.email }}</h2>
+    <ion-button expand="block" (click)="addTask()">Adicionar tarefa</ion-button>
+
+    <ion-list>
+      <ion-item *ngFor="let task of tasks">
+        <ion-label>
+          <h3>{{ task.title }}</h3>
+          <p>{{ task.start_at }} → {{ task.end_at }} ({{ task.priority }})</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

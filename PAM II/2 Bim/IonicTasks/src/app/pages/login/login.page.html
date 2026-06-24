@@ -1,0 +1,45 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title>Entrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="login-page">
+  <div class="wrapper">
+    <h1>Olá de novo 👋</h1>
+    <p class="subtitle">Acesse suas tarefas offline.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <ion-item fill="outline" class="input-item">
+        <ion-icon slot="start" name="mail-outline"></ion-icon>
+        <ion-input label="E-mail" labelPlacement="floating" type="email"
+                   formControlName="email"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['email'].touched && f['email'].invalid">
+        <small>Informe um e-mail válido.</small>
+      </ion-text>
+
+      <ion-item fill="outline" class="input-item">
+        <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+        <ion-input label="Senha" labelPlacement="floating" type="password"
+                   formControlName="password"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="f['password'].touched && f['password'].invalid">
+        <small>Informe a senha.</small>
+      </ion-text>
+
+      <ion-text color="danger" *ngIf="error">
+        <p class="error">{{ error }}</p>
+      </ion-text>
+
+      <ion-button expand="block" type="submit" class="primary-btn">
+        Entrar
+      </ion-button>
+
+      <div class="footer-link">
+        <span>Não tem conta?</span>
+        <a routerLink="/register">Criar conta</a>
+      </div>
+    </form>
+  </div>
+</ion-content>

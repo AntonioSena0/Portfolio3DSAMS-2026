@@ -1,0 +1,46 @@
+.register-page {
+  --background: linear-gradient(135deg, #1e293b, #0f172a);
+
+  .wrapper {
+    padding: 24px;
+    max-width: 420px;
+    margin: 40px auto;
+    background: rgba(15, 23, 42, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+    color: #e5e7eb;
+  }
+
+  h1 {
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    color: #9ca3af;
+    margin-bottom: 24px;
+  }
+
+  .input-item {
+    margin-top: 12px;
+    --background: transparent;
+  }
+
+  .error {
+    margin-top: 8px;
+  }
+
+  .primary-btn {
+    margin-top: 20px;
+  }
+
+  .footer-link {
+    margin-top: 16px;
+    text-align: center;
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+  }
+}

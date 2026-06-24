@@ -1,0 +1,99 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title>Tarefas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="tasks-page">
+  <div class="header">
+    <h2>{{ user?.name || user?.email }}</h2>
+    <p class="subtitle">Veja e organize suas tarefas offline.</p>
+  </div>
+
+  <div class="form-container" *ngIf="showForm">
+    <form [formGroup]="form" (ngSubmit)="addTask()">
+      <ion-item fill="outline" class="input-item">
+        <ion-input
+          label="Título"
+          labelPlacement="floating"
+          formControlName="title"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="input-item">
+        <ion-input
+          label="Descrição"
+          labelPlacement="floating"
+          formControlName="description"
+        ></ion-input>
+      </ion-item>
+
+      <div class="dates-row">
+        <ion-item fill="outline" class="input-item half">
+          <ion-label position="stacked">Início</ion-label>
+          <ion-datetime
+            presentation="date"
+            formControlName="startAt"
+          ></ion-datetime>
+        </ion-item>
+
+        <ion-item fill="outline" class="input-item half">
+          <ion-label position="stacked">Fim</ion-label>
+          <ion-datetime
+            presentation="date"
+            formControlName="endAt"
+          ></ion-datetime>
+        </ion-item>
+      </div>
+
+      <ion-item fill="outline" class="input-item">
+        <ion-label>Prioridade</ion-label>
+        <ion-select formControlName="priority">
+          <ion-select-option value="LOW">Baixa</ion-select-option>
+          <ion-select-option value="MEDIUM">Média</ion-select-option>
+          <ion-select-option value="HIGH">Alta</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" class="primary-btn">
+        Salvar tarefa
+      </ion-button>
+    </form>
+  </div>
+
+  <!-- Lista de tarefas em cards -->
+  <ion-list class="tasks-list" *ngIf="tasks.length > 0; else emptyState">
+    <ion-card *ngFor="let task of tasks" class="task-card">
+      <ion-card-header>
+        <ion-card-title>{{ task.title }}</ion-card-title>
+        <ion-card-subtitle>
+          {{ task.start_at }} → {{ task.end_at }}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p *ngIf="task.description">{{ task.description }}</p>
+        <ion-chip [color]="priorityColor(task.priority)" class="priority-chip">
+          {{ task.priority === 'HIGH' ? 'Alta' : task.priority === 'LOW' ? 'Baixa' : 'Média' }}
+        </ion-chip>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #emptyState>
+    <div class="empty">
+      <p>Nenhuma tarefa ainda.</p>
+      <p>Toque no botão + para criar a primeira.</p>
+    </div>
+  </ng-template>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="toggleForm()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
