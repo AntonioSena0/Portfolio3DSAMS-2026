@@ -11,9 +11,7 @@ Projeto Laravel 12 criado para demonstrar o uso de middleware entre uma requisi�
 
 ## Mensagens do middleware
 
-- Bem vindo ao portal
-- Seu acesso não foi autorizado.
-- Entrar em contato com o administrador.
+![Imagem de Execução](./public/img/README/screen.png)
 
 ## Rotas
 
