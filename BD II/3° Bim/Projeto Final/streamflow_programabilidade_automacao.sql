@@ -18,8 +18,8 @@ DROP FUNCTION IF EXISTS minutos_assistidos_por_produtora;
 DROP FUNCTION IF EXISTS calcular_idade;
 
 -- 0 Garante a linha 1 do resumo e acerta o contador com os plays que ja existem
-INSERT IGNORE INTO reproduction_summary (id, total_acessos) VALUES (1, 0);
-UPDATE reproduction_summary SET total_acessos = (SELECT COUNT(*) FROM play_logs) WHERE id = 1;
+INSERT IGNORE INTO reproduction_summary (id, total_plays) VALUES (1, 0);
+UPDATE reproduction_summary SET total_plays = (SELECT COUNT(*) FROM play_logs) WHERE id = 1;
 
 -- 1.1 Cobra a mensalidade do saldo e devolve quanto sobrou (saldo nunca fica negativo)
 DELIMITER $$
@@ -147,9 +147,9 @@ BEGIN
 
         SET v_min = minutos_assistidos_por_produtora(v_id_studio, v_ini);
 
-        INSERT INTO studio_billing (id_studio, competencia, minutos_consumidos)
+        INSERT INTO studio_billing (studio_id, reference_date, minutes_consumed)
         VALUES (v_id_studio, v_ini, v_min)
-        ON DUPLICATE KEY UPDATE minutos_consumidos = VALUES(minutos_consumidos);
+        ON DUPLICATE KEY UPDATE minutes_consumed = VALUES(minutes_consumed);
     END LOOP;
     CLOSE c_studios;
 
@@ -268,7 +268,7 @@ CREATE TRIGGER trg_perfis_auditoria_au
 AFTER UPDATE ON profiles
 FOR EACH ROW
 BEGIN
-    INSERT INTO audit_log (tabela, operacao, usuario, valor_antigo, valor_novo, data_hora)
+    INSERT INTO audit_log (table_name, operation, user_name, old_value, new_value, occurred_at)
     VALUES (
         'profiles',
         'UPDATE',
@@ -313,7 +313,7 @@ CREATE TRIGGER trg_resumo_reproducao_row_ai
 AFTER INSERT ON play_logs
 FOR EACH ROW
 BEGIN
-    UPDATE reproduction_summary SET total_acessos = total_acessos + 1 WHERE id = 1;
+    UPDATE reproduction_summary SET total_plays = total_plays + 1 WHERE id = 1;
 END$$
 DELIMITER ;
 

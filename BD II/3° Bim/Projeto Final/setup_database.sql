@@ -106,30 +106,31 @@ create table if not exists account_balance(
 	id_customer bigint not null unique
 );
 
-create table if not exists studio_billing(
-	id bigint auto_increment primary key,
-	id_studio bigint not null,
-	competencia date not null,
-	minutos_consumidos integer not null default 0,
-	criado_em timestamp default current_timestamp(),
-	atualizado_em timestamp default current_timestamp() on update current_timestamp()
+CREATE TABLE IF NOT EXISTS studio_billing (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    studio_id BIGINT NOT NULL,
+    reference_date DATE NOT NULL,
+    minutes_consumed INT NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 );
 
-create table if not exists audit_log(
-	id bigint auto_increment primary key,
-	tabela varchar(64) not null,
-	operacao varchar(10) not null,
-	usuario varchar(128) not null,
-	valor_antigo json null,
-	valor_novo json null,
-	data_hora timestamp not null default current_timestamp()
+CREATE TABLE IF NOT EXISTS audit_log (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    table_name VARCHAR(64) NOT NULL,
+    operation VARCHAR(10) NOT NULL,
+    user_name VARCHAR(128) NOT NULL,
+    old_value JSON NULL,
+    new_value JSON NULL,
+    occurred_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
-create table if not exists reproduction_summary(
-	id integer primary key,
-	total_acessos bigint not null default 0,
-	atualizado_em timestamp default current_timestamp() on update current_timestamp(),
-	constraint chk_resumo_single_row check (id = 1)
+CREATE TABLE IF NOT EXISTS reproduction_summary (
+    id INT PRIMARY KEY,
+    total_plays BIGINT NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    
+    CONSTRAINT chk_resumo_single_row CHECK (id = 1)
 );
 
 -- Constraints
@@ -165,14 +166,14 @@ alter table payments add constraint check_amount check(amount > 0);
 alter table account_balance add constraint balance_customer_fk foreign key (id_customer) references customers(id) on update cascade on delete cascade;
 alter table account_balance add constraint check_balance_non_negative check(balance >= 0);
 
-alter table studio_billing add constraint studio_billing_studios_fk foreign key (id_studio) references studios(id) on update cascade on delete no action;
-alter table studio_billing add constraint uq_studio_billing_studio_comp unique (id_studio, competencia);
+alter table studio_billing add constraint studio_billing_studios_fk foreign key (studio_id) references studios(id) on update cascade on delete no action;
+alter table studio_billing add constraint uq_studio_billing_studio_comp unique (studio_id, reference_date);
 
 -- index
 alter table play_logs add index idx_play_timestamp (play_timestamp);
 alter table play_logs add index idx_profile_video (id_profile, id_video);
 alter table watching_history add index idx_watching_profile (id_profile, is_completed, started_at desc);
-alter table audit_log add index idx_audit_tabela_data (tabela, data_hora);
+alter table audit_log add index idx_audit_table_date (table_name, occurred_at);
 
 -- view de segurança do usuário
 create or replace view v_marketing_engagement as
