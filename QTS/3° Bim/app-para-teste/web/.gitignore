@@ -1,0 +1,6 @@
+# Banco de dados local (gerado automaticamente na primeira execução)
+data/biblioteca.db*
+
+# Logs e temporários
+*.log
+.DS_Store

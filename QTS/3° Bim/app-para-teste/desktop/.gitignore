@@ -1,0 +1,14 @@
+# Pasta de build do Maven
+target/
+
+# Banco de dados local (gerado automaticamente na primeira execução)
+data/*.db
+data/*.db-journal
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/

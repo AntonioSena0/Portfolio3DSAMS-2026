@@ -1,0 +1,13 @@
+# Bancos de dados locais (gerados automaticamente)
+data/*.db
+data/*.db-journal
+
+# Build do Maven (desktop)
+desktop/target/
+
+# Logs e temporários
+*.log
+.DS_Store
+
+desktop/docs/BUGS_E_SOLUCOES.md
+web/docs/BUGS_E_SOLUCOES.md

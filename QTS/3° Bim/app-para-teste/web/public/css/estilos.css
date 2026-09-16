@@ -1,0 +1,274 @@
+/* =========================================================
+   Folha de estilos - Sistema de Biblioteca Escolar
+   (CSS intencionalmente com problemas de responsividade/contraste)
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* BUG DE ACESSIBILIDADE: falta de contraste em alguns elementos (texto cinza claro) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* BUG DE LAYOUT: cabeçalho fixo sem padding ajustado */
+.topo {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.topo h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.topo nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.topo nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.topo nav a:hover {
+    background-color: #34495e;
+}
+
+.conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+h3 {
+    margin: 1.5rem 0 0.75rem;
+    color: #34495e;
+}
+
+/* Cards do painel */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card .valor {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #27ae60;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+table thead {
+    background-color: #ecf0f1;
+}
+
+/* BUG DE RESPONSIVIDADE: tabelas não têm scroll horizontal em telas pequenas */
+@media (max-width: 600px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Formulários */
+.form-cadastro,
+.form-busca {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-busca {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.campos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.campos label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+}
+
+input,
+select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+}
+
+/* BUG: foco de acessibilidade ausente - borda padrão sem destaque */
+input:focus,
+select:focus {
+    outline: none;
+}
+
+button {
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+button:hover {
+    background-color: #34495e;
+}
+
+.form-inline {
+    display: inline;
+}
+
+/* Badges */
+.badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-ativo {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+.badge-devolvido {
+    background-color: #27ae60;
+    color: #fff;
+}
+
+/* Mensagens */
+.erro {
+    background-color: #fdecea;
+    color: #c0392b;
+    border-left: 4px solid #c0392b;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.sucesso {
+    background-color: #eafaf1;
+    color: #1e8449;
+    border-left: 4px solid #27ae60;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.ok {
+    color: #27ae60;
+}
+
+.dica {
+    background-color: #fef9e7;
+    border-left: 4px solid #f1c40f;
+    padding: 0.75rem 1rem;
+    margin-top: 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #7d6608;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-conteudo {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.modal-conteudo p {
+    margin-bottom: 1rem;
+}
+
+.modal-conteudo button {
+    margin-right: 0.5rem;
+}
+
+.rodape {
+    text-align: center;
+    padding: 1rem;
+    color: #999; /* BUG DE ACESSIBILIDADE: contraste baixo */
+    font-size: 0.85rem;
+    border-top: 1px solid #ddd;
+    margin-top: 2rem;
+}

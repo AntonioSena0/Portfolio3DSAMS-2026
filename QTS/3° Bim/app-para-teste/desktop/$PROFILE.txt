@@ -1,0 +1,6 @@
+function Abrir-MinhaPasta {
+    explorer.exe "C:\Users\salomaon\Documents\My Games"
+}
+
+# Cria um apelido curto para a função acima
+Set-Alias -Name games -Value Abrir-MinhaPasta
