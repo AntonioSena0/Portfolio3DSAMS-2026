@@ -81,8 +81,8 @@ class RegraDeNegocioTest {
             int a2 = idDe("alunos", "email", e2);
             int l = idDe("livros", "titulo", tit);
             assertTrue(emp.emprestar(a1, l));
-            assertTrue(emp.emprestar(a2, l), "BUG: emprestou além do estoque");
-            assertTrue(livro.quantidadeDisponivel(l) < 0, "BUG: disponível negativo");
+            assertFalse(emp.emprestar(a2, l), "Sistema deve recusar empréstimo sem exemplares disponíveis");
+            assertTrue(livro.quantidadeDisponivel(l) >= 0, "Disponibilidade nunca deve ficar negativa");
         } finally {
             limparSfx(sfx);
         }
@@ -104,7 +104,7 @@ class RegraDeNegocioTest {
             assertTrue(emp.emprestar(a, l));
             int empId = maxId();
             assertTrue(emp.devolver(empId));
-            assertTrue(emp.devolver(empId), "BUG: devolução dupla aceita");
+            assertFalse(emp.devolver(empId), "2ª devolução deve ser recusada (já devolvido)");
         } finally {
             limparSfx(sfx);
         }

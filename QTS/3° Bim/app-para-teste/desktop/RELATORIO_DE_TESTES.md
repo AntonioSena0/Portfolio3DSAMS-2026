@@ -249,30 +249,35 @@
 
 ```
 [INFO] Running br.edu.etec.biblioteca.BuscaLivroTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.BuscaLivroTest
+[ERROR] Tests run: 2, Failures: 1, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.BuscaLivroTest
 [INFO] Running br.edu.etec.biblioteca.CadastroAlunoEmailDuplicadoTest
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.CadastroAlunoEmailDuplicadoTest
 [INFO] Running br.edu.etec.biblioteca.CadastroLivroQuantidadeTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.CadastroLivroQuantidadeTest
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.CadastroLivroQuantidadeTest
 [INFO] Running br.edu.etec.biblioteca.ExclusaoAlunoComPendenciaTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.ExclusaoAlunoComPendenciaTest
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.ExclusaoAlunoComPendenciaTest
 [INFO] Running br.edu.etec.biblioteca.RegraDeNegocioTest
 [INFO] aluno já atingiu o limite (3)
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.RegraDeNegocioTest
+[ERROR] Tests run: 6, Failures: 2, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.RegraDeNegocioTest
 [INFO] Running br.edu.etec.biblioteca.ValidacaoEmailTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.ValidacaoEmailTest
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0 -- in br.edu.etec.biblioteca.ValidacaoEmailTest
 [INFO] Results:
-[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
-[INFO] BUILD SUCCESS
+[ERROR] Failures:
+[ERROR]   BuscaLivroTest.buscaPorCuringaDeveriaTratarComoTextoLiteral -- expected: <0> but was: <5>
+[ERROR]   CadastroLivroQuantidadeTest.livroComQuantidadeNegativaDeveSerRecusado -- expected: <false> but was: <true>
+[ERROR]   ExclusaoAlunoComPendenciaTest.alunoComEmprestimoAtivoNaoDeveSerRemovido -- expected: <false> but was: <true>
+[ERROR]   RegraDeNegocioTest.naoDeveriaEmprestarAlemDoEstoque -- expected: <false> but was: <true>
+[ERROR]   RegraDeNegocioTest.naoDeveriaPermitirDevolucaoDupla -- expected: <false> but was: <true>
+[ERROR]   ValidacaoEmailTest.emailInvalidoComArrobaDuploDeveSerRejeitado -- expected: <false> but was: <true>
+[ERROR] Tests run: 14, Failures: 6, Errors: 0, Skipped: 0
+[INFO] BUILD FAILURE
 ```
-
-> Um detalhe importante: os testes foram escritos para confirmar o comportamento real do sistema (que está bugado), então eles passam mesmo quando o defeito existe — por exemplo, o teste afirma que o empréstimo além do estoque *acontece*. A ideia é que, quando cada defeito for corrigido, o teste correspondente seja ajustado para o comportamento esperado e continue passando, servindo como teste de regressão.
 
 ## 4. Classificação e Estatísticas
 
 - Total de casos de teste executados (manuais, plano): **16**
 - Total aprovados / reprovados (manuais): **3 P / 13 F**
-- Testes automatizados JUnit: **14 (14 aprovados, 0 reprovados, 0 erros)**
+- Testes automatizados JUnit: **14 (8 aprovados, 6 reprovados, 0 erros)**
 - Nº de defeitos por categoria:
   - Funcional (regra de negócio/integridade/UI): **6** (D01, D02, D05, D07, D08, D09)
   - Segurança: **1** (D06)

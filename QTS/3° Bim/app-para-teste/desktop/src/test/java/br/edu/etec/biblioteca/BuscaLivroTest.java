@@ -25,7 +25,8 @@ class BuscaLivroTest {
     }
 
     @Test
-    void buscaPorCuringaRetornaTodoOAcervoAtualmente() {
-        assertEquals(livro.todos().size(), livro.buscar("%").size());
+    void buscaPorCuringaDeveriaTratarComoTextoLiteral() {
+        assertEquals(0, livro.buscar("%").size(),
+            "Busca por '%' deve tratar como texto literal e retornar vazio, não todo o acervo");
     }
 }

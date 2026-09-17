@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class CadastroLivroQuantidadeTest {
 
@@ -36,8 +36,9 @@ class CadastroLivroQuantidadeTest {
     }
 
     @Test
-    void livroComQuantidadeNegativaEAceitoAtualmente() {
+    void livroComQuantidadeNegativaDeveSerRecusado() {
         String titulo = "Livro Qtd " + sufixo;
-        assertTrue(livro.criar(titulo, "Autor Qtd", 2020, "Teste", -5, "ISBN-" + sufixo));
+        assertFalse(livro.criar(titulo, "Autor Qtd", 2020, "Teste", -5, "ISBN-" + sufixo),
+            "Sistema deve recusar cadastro de livro com quantidade negativa");
     }
 }

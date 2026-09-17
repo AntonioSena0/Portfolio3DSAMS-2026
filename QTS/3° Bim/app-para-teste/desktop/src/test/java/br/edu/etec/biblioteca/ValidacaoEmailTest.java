@@ -31,7 +31,8 @@ class ValidacaoEmailTest {
     }
 
     @Test
-    void emailInvalidoComArrobaDuploPassaNaValidacaoAtual() {
-        assertTrue(aluno.emailValido("teste@@escola..com"));
+    void emailInvalidoComArrobaDuploDeveSerRejeitado() {
+        assertFalse(aluno.emailValido("teste@@escola..com"),
+            "Validação deve rejeitar e-mail com @@ e pontos duplos");
     }
 }

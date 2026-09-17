@@ -14,7 +14,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ExclusaoAlunoComPendenciaTest {
@@ -49,7 +50,7 @@ class ExclusaoAlunoComPendenciaTest {
     }
 
     @Test
-    void alunoComEmprestimoAtivoERemovidoAtualmente() throws Exception {
+    void alunoComEmprestimoAtivoNaoDeveSerRemovido() throws Exception {
         String email = "pend_" + sufixo + "@escola.edu";
         String titulo = "Livro Pend " + sufixo;
         assertTrue(aluno.criar("Aluno Pend", email, "3A", "11999990001"));
@@ -57,8 +58,10 @@ class ExclusaoAlunoComPendenciaTest {
         int alunoId = buscarId("alunos", "email", email);
         int livroId = buscarId("livros", "titulo", titulo);
         assertTrue(emprestimo.emprestar(alunoId, livroId));
-        assertTrue(aluno.remover(alunoId));
-        assertNull(aluno.buscar(alunoId));
+        assertFalse(aluno.remover(alunoId),
+            "Sistema deve bloquear exclusão de aluno com empréstimo ativo");
+        assertNotNull(aluno.buscar(alunoId),
+            "Aluno com pendência deve continuar cadastrado");
     }
 
     private int buscarId(String tabela, String coluna, String valor) throws Exception {
