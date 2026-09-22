@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "589905701868",
+    "project_id": "escape-room-edu",
+    "storage_bucket": "escape-room-edu.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589905701868:android:23a96968dab767bfd66ec9",
+        "android_client_info": {
+          "package_name": "com.example.escape_room_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaoR5RCgGUC2xOmENbyd0sSfbAqaa3kkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
